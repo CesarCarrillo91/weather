@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8">
+    <title>Clima</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Docs at http://http://simpleweatherjs.com -->
+    <div id="weather" class="flex">
+        <div class="header"></div>
+        <div class="main">
+            <div class="today">
+                <i id="today-condition" alt="Today's current condition."></i>
+                <h2 id="today-temperature"></h2>
+            </div>
+            <div class="tomorrow">
+                <i id="tomorrow-condition" src="" alt="Tomorrow's condition."></i>
+                <h4 id="tomorrow-temperature"></h4>
+            </div>
+            <div class="after-tomorrow">
+                <i id="after-tomorrow-condition" src="" alt="After tomorrow's condition."></i>
+                <h4 id="after-tomorrow-temperature"></h4>
+            </div>
+            <div class="last-day">
+                <i id="last-day-condition" src="" alt="Last day's condition."></i>
+                <h4 id="last-day-temperature"></h4>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.simpleWeather.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
