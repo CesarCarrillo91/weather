@@ -14,7 +14,7 @@ $(document).ready(function() {
         woeid: '',
         unit: 'c',
         success: function(weather) {
-            // date.getDate() devuelve de 0 a 6; 0 es Domingo.
+            // date.getDay() devuelve de 0 a 6; 0 es Domingo.
             var dia_str = dias[date.getDay()];
             var dia_num = pad(date.getDate(), 2);
 
@@ -42,12 +42,27 @@ $(document).ready(function() {
             $("#today-condition").addClass("icon-"+weather.code);
             $("#today-temperature").html(weather.temp+"&deg;"+weather.units.temp);
 
+            var dia_despues = (date.getDay() + 1) > 6
+                ? (date.getDay() + 1) - 6
+                : (date.getDay() + 1);
+
+            $("#tomorrow .day-name").html(dias[dia_despues]);
             $("#tomorrow-condition").addClass("icon-"+weather.forecast[1].code);
             $("#tomorrow-temperature").html(weather.forecast[1].low+"&deg;"+weather.units.temp);
 
+            dia_despues = (date.getDay() + 2) > 6
+                ? (date.getDay() + 2) - 6
+                : (date.getDay() + 2);
+
+            $("#after-tomorrow .day-name").html(dias[dia_despues]);
             $("#after-tomorrow-condition").addClass("icon-"+weather.forecast[2].code);
             $("#after-tomorrow-temperature").html(weather.forecast[2].low+"&deg;"+weather.units.temp);
 
+            dia_despues = (date.getDay() + 3) > 6
+                ? (date.getDay() + 3) - 6
+                : (date.getDay() + 3);
+
+            $("#last-day .day-name").html(dias[dia_despues]);
             $("#last-day-condition").addClass("icon-"+weather.forecast[3].code);
             $("#last-day-temperature").html(weather.forecast[3].low+"&deg;"+weather.units.temp);
             // var html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';

@@ -26,8 +26,11 @@ html {
 }
 
 body {
-    padding: 45px 0;
     font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+div {
+    box-sizing: border-box;
 }
 
 i {
@@ -133,13 +136,12 @@ i {
 
 #weather .header {
     width: 100%;
-    height: 50px;
-    border: 1px solid grey;
+    border: 1px solid #dadada;
 }
 
 #weather .main {
     width: 100%;
-    height: calc(100% - 50px);
+    height: 100%;
 
     display: flex;
     flex-wrap: wrap;
@@ -150,10 +152,41 @@ i {
 #weather .main .principal {
     width: 50%;
     height: 100%;
+    padding: 30px 0;
+    border: 1px solid #dadada;
+}
+
+#weather .main .principal .day-name {
+    font-size: 20px;
 }
 
 #weather .main .principal i {
     font-size: 100px;
+}
+
+#weather .main .secondary {
+    position: relative;
+    border: 1px solid #dadada;
+}
+
+#weather .main .day-name {
+    font-size: 18px;
+}
+
+#weather .main .secondary .day-name {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+
+#weather .main .secondary i,
+#weather .main .secondary h4 {
+    padding: 0 15px;
+    text-align: right;
+}
+
+#weather .main .secondary h4 {
+    font-size: 24px;
 }
 
 #weather .main .secondary-2 {
@@ -163,7 +196,7 @@ i {
 
 #weather .main .secondary-3 {
     width: 50%;
-    height: 33%;
+    height: 33.3%;
 }
 
 #weather ul {
