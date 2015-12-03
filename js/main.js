@@ -21,56 +21,89 @@ $(document).ready(function() {
             // date.getMonth() devuelve de 0 a 11; 0 es Enero.
             var mes = meses[date.getMonth()];
 
+            // Obtener los ultimos dos digitos del año.
             var temporada = date.getFullYear().toString().slice(2);
 
-            var gmt = -2;
-            if (date.getHours() > 11) {
-                var hora = pad(Math.abs(date.getHours() - 10 + gmt),2);
+            // Reloj dinamico.
+            var clock = function() {
+                // Se debe obtener nuevamente la fecha actual
+                // cada refesh.
+                var date = new Date();
+
+                var gmt = -2;
+                if (date.getHours() > 11) {
+                    var hora = pad(Math.abs(date.getHours() - 10 + gmt),2);
+                    var meridiano = "PM";
+                } else {
+                    var hora = pad(Math.abs(date.getHours() + 1 + gmt),2);
+                    var meridiano = "AM";
+                }
+
                 var minutos = pad(date.getMinutes(),2);
-                var meridiano = "PM";
-            } else {
-                var hora = pad(Math.abs(date.getHours() + 1 + gmt),2);
-                var minutos = pad(date.getMinutes(),2);
-                var meridiano = "AM";
-            }
+                var segundos = pad(date.getSeconds(),2);
 
-            var fecha = dia_str + " " + dia_num + " " + mes +
-                " " + temporada + " " + hora + ":" + minutos + " " + meridiano;
+                var fecha = dia_str + " " + dia_num + " " + mes +
+                " " + temporada + " " + hora + ":" + minutos +
+                ":" + segundos +" " + meridiano;
 
-            $("#header-title").html(fecha);
+                $("#header-title").html(fecha);
+            };
 
-            $("#today-condition").addClass("icon-"+weather.code);
+            clock();
+            // Ciclo para refresecar el reloj cada segundo.
+            setInterval(clock, 1000);
+
+            /*
+            * CLIMA DE HOY
+            */
+            // $("#today-condition").addClass("icon-"+weather.code);
+            $("#today-condition").attr("src", weather.image);
             $("#today-temperature").html(weather.temp+"&deg;"+weather.units.temp);
 
+            /*
+            * CLIMA DE MAÑANA
+            */
             var dia_despues = (date.getDay() + 1) > 6
                 ? (date.getDay() + 1) - 6
                 : (date.getDay() + 1);
 
-            $("#tomorrow .day-name").html(dias[dia_despues]);
-            $("#tomorrow-condition").addClass("icon-"+weather.forecast[1].code);
-            $("#tomorrow-temperature").html(weather.forecast[1].low+"&deg;"+weather.units.temp);
+            var temp_promedio = Math.round((parseInt(weather.forecast[1].high) +
+                parseInt(weather.forecast[1].low)) / 2);
 
+            $("#tomorrow .day-name").html(dias[dia_despues]);
+            // $("#tomorrow-condition").addClass("icon-"+weather.forecast[1].code);
+            $("#tomorrow-condition").attr("src", weather.forecast[1].image);
+            $("#tomorrow-temperature").html(temp_promedio+"&deg;"+weather.units.temp);
+
+            /*
+            * CLIMA DE PASADO MAÑANA
+            */
             dia_despues = (date.getDay() + 2) > 6
                 ? (date.getDay() + 2) - 6
                 : (date.getDay() + 2);
 
-            $("#after-tomorrow .day-name").html(dias[dia_despues]);
-            $("#after-tomorrow-condition").addClass("icon-"+weather.forecast[2].code);
-            $("#after-tomorrow-temperature").html(weather.forecast[2].low+"&deg;"+weather.units.temp);
+            temp_promedio = Math.round((parseInt(weather.forecast[2].high) +
+                parseInt(weather.forecast[2].low)) / 2);
 
+            $("#after-tomorrow .day-name").html(dias[dia_despues]);
+            // $("#after-tomorrow-condition").addClass("icon-"+weather.forecast[2].code);
+            $("#after-tomorrow-condition").attr("src", weather.forecast[2].image);
+            $("#after-tomorrow-temperature").html(temp_promedio+"&deg;"+weather.units.temp);
+
+            /*
+            * CLIMA DEL 3ER Y ULTIMO DIA
+            */
             dia_despues = (date.getDay() + 3) > 6
                 ? (date.getDay() + 3) - 6
                 : (date.getDay() + 3);
 
-            $("#last-day .day-name").html(dias[dia_despues]);
-            $("#last-day-condition").addClass("icon-"+weather.forecast[3].code);
-            $("#last-day-temperature").html(weather.forecast[3].low+"&deg;"+weather.units.temp);
-            // var html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-            // html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-            // html += '<li class="currently">'+weather.currently+'</li>';
-            // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+            temp_promedio = Math.round((parseInt(weather.forecast[3].high) +
+                parseInt(weather.forecast[3].low)) / 2);
 
-            // $("#weather").html(html);
+            $("#last-day .day-name").html(dias[dia_despues]);
+            // $("#last-day-condition").addClass("icon-"+weather.forecast[3].code);
+            $("#last-day-condition").attr("src", weather.forecast[3].image);
+            $("#last-day-temperature").html(temp_promedio+"&deg;"+weather.units.temp);
         },
         error: function(error) {
             $("#weather").html('<p>'+error+'</p>');
