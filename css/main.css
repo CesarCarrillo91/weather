@@ -20,14 +20,16 @@
     font-style: normal;
 }
 
-html {
+html,
+body {
     width: 100%;
     height: 100%;
 }
 
 body {
-    font: 13px "Open Sans", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font: 16px "Open Sans", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     margin: 0;
+    overflow: hidden;
 }
 
 div {
@@ -43,7 +45,7 @@ i {
     display: block;
     color: #000;
     font-family: weather;
-    font-size: 50px;
+    font-size: 10vw;
     font-weight: normal;
     font-style: normal;
     line-height: 1.0;
@@ -102,13 +104,14 @@ i {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 #weather {
-    width: 225px;
-    height: 266px;
+    width: 100%;
+    height: 100%;
     background-image: url(http://www.maevamiramar.com.mx/fondo_propuesta.jpg);
-    border: 3px solid #008dc4;
+    border: 5px solid #008dc4;
     text-align: center;
     text-transform: uppercase;
 }
@@ -126,32 +129,36 @@ i {
 }
 
 #weather h1 {
-    font-size: 55px;
+    font-size: 6vw;
 }
 
 #weather h2 {
-    font-size: 43px;
+    font-size: 5vw;
 }
 
 #weather h3 {
-    font-size: 35px;
+    font-size: 4vw;
 }
 
 #weather h4 {
-    font-size: 17px;
+    font-size: 3vw;
+}
+
+#weather h5 {
+    font-size: 2vw;
 }
 
 
 #weather .header {
     width: 100%;
-    height: 32px;
+    flex-grow: 1;
     padding: 5px 0;
     border: 1px solid #008dc4;
 }
 
 #weather .main {
     width: 100%;
-    height: calc(100% - 32px);
+    flex-grow: 3;
 
     display: flex;
     flex-wrap: wrap;
@@ -166,16 +173,16 @@ i {
     border: 1px solid #008dc4;
 }
 
-#weather .main .principal .day-name {
+/*#weather .main .principal .day-name {
     font-size: 24px;
-}
+}*/
 
-#weather .main .principal i {
+/*#weather .main .principal i {
     font-size: 100px;
-}
+}*/
 
 #weather .main .principal img {
-    margin-left: 20px;
+    margin-left: 5vw;
 }
 
 #weather .main .secondary {
@@ -183,12 +190,12 @@ i {
     border: 1px solid #008dc4;
 }
 
-#weather .main .day-name {
+/*#weather .main .day-name {
     font-size: 16px;
     font-weight: bold;
     text-shadow: 2px 3px 2px #000;
     color: #fff;
-}
+}*/
 
 #weather .main .secondary .day-name {
     position: absolute;
@@ -204,16 +211,16 @@ i {
 }
 
 #weather .main .secondary i,
-#weather .main .secondary h4 {
+#weather .main .secondary h2 {
     padding: 0 15px;
     text-align: right;
 }
 
-#weather .main .secondary h4 {
+#weather .main .secondary h2 {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 24px;
+    /*font-size: 24px;*/
 }
 
 #weather .main .secondary-2 {
