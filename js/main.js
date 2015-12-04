@@ -42,7 +42,7 @@ $(document).ready(function() {
                 var minutos = pad(date.getMinutes(),2);
                 var segundos = pad(date.getSeconds(),2);
 
-                var fecha = dia_str + " " + dia_num + " " + mes +
+                var fecha = dia_num + " " + mes +
                 " " + temporada + " " + hora + ":" + minutos +
                 ":" + segundos +" " + meridiano;
 
@@ -64,7 +64,7 @@ $(document).ready(function() {
             * CLIMA DE MAÑANA
             */
             var dia_despues = (date.getDay() + 1) > 6
-                ? (date.getDay() + 1) - 6
+                ? (date.getDay() + 1) - 7
                 : (date.getDay() + 1);
 
             var temp_promedio = Math.round((parseInt(weather.forecast[1].high) +
@@ -79,7 +79,7 @@ $(document).ready(function() {
             * CLIMA DE PASADO MAÑANA
             */
             dia_despues = (date.getDay() + 2) > 6
-                ? (date.getDay() + 2) - 6
+                ? (date.getDay() + 2) - 7
                 : (date.getDay() + 2);
 
             temp_promedio = Math.round((parseInt(weather.forecast[2].high) +
@@ -94,7 +94,7 @@ $(document).ready(function() {
             * CLIMA DEL 3ER Y ULTIMO DIA
             */
             dia_despues = (date.getDay() + 3) > 6
-                ? (date.getDay() + 3) - 6
+                ? (date.getDay() + 3) - 7
                 : (date.getDay() + 3);
 
             temp_promedio = Math.round((parseInt(weather.forecast[3].high) +
