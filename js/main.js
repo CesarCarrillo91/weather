@@ -53,6 +53,10 @@ $(document).ready(function() {
             // Ciclo para refresecar el reloj cada segundo.
             setInterval(clock, 1000);
 
+            $("#weather .main")
+                .css("height", "calc(100% - "+$("#weather .header")
+                .prop("offsetHeight")+"px)");
+
             /*
             * CLIMA DE HOY
             */
@@ -108,5 +112,11 @@ $(document).ready(function() {
         error: function(error) {
             $("#weather").html('<p>'+error+'</p>');
         }
+    });
+
+    $(window).resize(function() {
+        $("#weather .main")
+            .css("height", "calc(100% - "+$("#weather .header")
+            .prop("offsetHeight")+"px)");
     });
 });

@@ -101,16 +101,26 @@ i {
 .icon-47:before { content: "S"; }
 
 .flex {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
+.middle {
+    width: 100%;
+    position: absolute;
+    top: 25%;
+}
+
 #weather {
     width: 100%;
     height: 100%;
-    background-image: url(http://www.maevamiramar.com.mx/fondo_propuesta.jpg);
+    min-height: 480px;
+    background: url(http://www.maevamiramar.com.mx/fondo_propuesta.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     border: 5px solid #008dc4;
     text-align: center;
     text-transform: uppercase;
@@ -129,47 +139,41 @@ i {
 }
 
 #weather h1 {
-    font-size: 6vw;
+    font-size: 8vh;
 }
 
 #weather h2 {
-    font-size: 5vw;
+    font-size: 7vh;
 }
 
 #weather h3 {
-    font-size: 4vw;
+    font-size: 6vh;
 }
 
 #weather h4 {
-    font-size: 3vw;
+    font-size: 5vh;
 }
 
 #weather h5 {
-    font-size: 2vw;
+    font-size: 4vh;
 }
 
 
 #weather .header {
     width: 100%;
-    flex-grow: 1;
     padding: 5px 0;
     border: 1px solid #008dc4;
 }
 
 #weather .main {
     width: 100%;
-    flex-grow: 3;
-
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     /* or flex-flow: column wrap;*/
 }
 
 #weather .main .principal {
+    position: relative;
     width: 50%;
     height: 100%;
-    padding: 30px 0;
     border: 1px solid #008dc4;
 }
 
@@ -182,7 +186,8 @@ i {
 }*/
 
 #weather .main .principal img {
-    margin-left: 5vw;
+    width: 50vh;
+    margin-left: 5vh;
 }
 
 #weather .main .secondary {
@@ -205,9 +210,9 @@ i {
 
 #weather .main .secondary .thumbnail {
     position: absolute;
-    top: 5px;
-    right: -20px;
-    height: 55px;
+    width: 30vh;
+    top: 7vh;
+    right: -5vh;
 }
 
 #weather .main .secondary i,
