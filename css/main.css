@@ -165,6 +165,12 @@ i {
     border: 1px solid #008dc4;
 }
 
+#weather .footer {
+    width: 100%;
+    padding: 5px 0;
+    border: 1px solid #008dc4;
+}
+
 #weather .main {
     width: 100%;
     /* or flex-flow: column wrap;*/

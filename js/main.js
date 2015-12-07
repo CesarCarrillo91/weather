@@ -30,12 +30,17 @@ $(document).ready(function() {
                 // cada refesh.
                 var date = new Date();
 
-                var gmt = -2;
+                var gmt = 0;
+                var doce = 12;
                 if (date.getHours() > 11) {
-                    var hora = pad(Math.abs(date.getHours() - 10 + gmt),2);
+                    var hora = date.getHours() === 12
+                        ? 12
+                        : pad(Math.abs(date.getHours() - 12),2);
                     var meridiano = "PM";
                 } else {
-                    var hora = pad(Math.abs(date.getHours() + 1 + gmt),2);
+                    var hora = date.getHours() === 0
+                        ? 12
+                        : pad(Math.abs(date.getHours()),2);
                     var meridiano = "AM";
                 }
 
@@ -43,19 +48,19 @@ $(document).ready(function() {
                 var segundos = pad(date.getSeconds(),2);
 
                 var fecha = dia_num + " " + mes +
-                " " + temporada + " " + hora + ":" + minutos +
+                " " + temporada;
+                var horario = hora + ":" + minutos +
                 ":" + segundos +" " + meridiano;
 
                 $("#header-title").html(fecha);
+                $("#footer-title").html(horario);
             };
 
             clock();
             // Ciclo para refresecar el reloj cada segundo.
             setInterval(clock, 1000);
 
-            $("#weather .main")
-                .css("height", "calc(100% - "+$("#weather .header")
-                .prop("offsetHeight")+"px)");
+            resize();
 
             /*
             * CLIMA DE HOY
@@ -114,9 +119,15 @@ $(document).ready(function() {
         }
     });
 
-    $(window).resize(function() {
+    var resize = function() {
         $("#weather .main")
-            .css("height", "calc(100% - "+$("#weather .header")
-            .prop("offsetHeight")+"px)");
+            .css("height", "calc(100% - " +
+                ( $("#weather .header").prop("offsetHeight") +
+                $("#weather .footer").prop("offsetHeight") ) +
+                "px)");
+    };
+
+    $(window).resize(function() {
+        resize();
     });
 });
