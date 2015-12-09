@@ -165,10 +165,18 @@ i {
     border: 1px solid #008dc4;
 }
 
+#weather .header #header-title {
+    font-size: 5.5vh;
+}
+
 #weather .footer {
     width: 100%;
     padding: 5px 0;
     border: 1px solid #008dc4;
+}
+
+#wehater .footer #footer-title {
+    font-size: 5.5vh;
 }
 
 #weather .main {
