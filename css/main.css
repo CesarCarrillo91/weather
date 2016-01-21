@@ -42,8 +42,8 @@ img {
 }
 
 i {
-    display: block;
-    color: #000;
+    display: block !important;
+    color: #c61581;
     font-family: weather;
     font-size: 10vw;
     font-weight: normal;
@@ -196,6 +196,12 @@ i {
     margin-left: 5vh;
 }
 
+#weather .main .principal i {
+    font-size: 18vh;
+    /* margin-left: 5vh; */
+    margin: 7vh 0 4vh 3vh;
+}
+
 #weather .main .secondary {
     position: relative;
     border: 1px solid #008dc4;
@@ -221,10 +227,17 @@ i {
     right: -5vh;
 }
 
+#weather .main .secondary i[data-thumbnail] {
+    position: absolute;
+    font-size: 13vh;
+    top: 7vh;
+    right: 4vh;
+}
+
 #weather .main .secondary i,
 #weather .main .secondary h2 {
     padding: 0 15px;
-    text-align: right;
+    text-align: center;
 }
 
 #weather .main .secondary h2 {

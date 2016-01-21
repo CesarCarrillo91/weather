@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Club Maeva Miramar | Clima TV</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/weather-icons.min.css">
 </head>
 <body>
     <!-- Docs at http://http://simpleweatherjs.com -->
@@ -16,30 +17,30 @@
             <div id="today" class="principal">
                 <div class="middle">
                     <h1 class="day-name">HOY</h1>
-                    <img id="today-condition" src="" alt="">
-                    <!-- <i id="today-condition"></i> -->
+                    <!-- <img id="today-condition" src="" alt=""> -->
+                    <i id="today-condition"></i>
                     <h1 id="today-temperature"></h1>
                 </div>
             </div>
             <div id="tomorrow" class="secondary secondary-3">
                 <h3 class="day-name"></h3>
-                <img id="tomorrow-condition" class="thumbnail" src=""
-                    alt="">
-                <!-- <i id="tomorrow-condition"></i> -->
+                <!-- <img id="tomorrow-condition" class="thumbnail" src=""
+                    alt=""> -->
+                <i id="tomorrow-condition" data-thumbnail></i>
                 <h2 id="tomorrow-temperature"></h2>
             </div>
             <div id="after-tomorrow" class="secondary secondary-3">
                 <h3 class="day-name"></h3>
-                <img id="after-tomorrow-condition" class="thumbnail" src=""
-                    alt="">
-                <!-- <i id="after-tomorrow-condition"></i> -->
+                <!-- <img id="after-tomorrow-condition" class="thumbnail" src=""
+                    alt=""> -->
+                <i id="after-tomorrow-condition" data-thumbnail></i>
                 <h2 id="after-tomorrow-temperature"></h2>
             </div>
             <div id="last-day" class="secondary secondary-3">
                 <h3 class="day-name"></h3>
-                <img id="last-day-condition" class="thumbnail" src=""
-                    alt="">
-                <!-- <i id="last-day-condition"></i> -->
+                <!-- <img id="last-day-condition" class="thumbnail" src=""
+                    alt=""> -->
+                <i id="last-day-condition" data-thumbnail></i>
                 <h2 id="last-day-temperature"></h2>
             </div>
         </div>
@@ -49,7 +50,10 @@
     </div>
 
     <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/jquery.simpleWeather.min.js"></script>
-    <script src="js/main.js"></script>
+    <!-- With simpleweather.js plugin (currently offline):
+        <script src="js/jquery.simpleWeather.min.js"></script>
+        <script src="js/main-with-simpleweather.js"></script> -->
+    <script src="js/main-with-yahooweather.js"></script>
+    <script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where u = 'c' and woeid in (select woeid from geo.places(1) where text='ciudad madero, mx')&format=json&callback=callbackFunction"></script>
 </body>
 </html>
