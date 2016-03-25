@@ -12,7 +12,7 @@ $(document).ready(function() {
     $.simpleWeather({
         location: 'Ciudad Madero, Tamaulipas, MX',
         woeid: '',
-        unit: 'c',
+        unit: 'f',
         success: function(weather) {
             // date.getDay() devuelve de 0 a 6; 0 es Domingo.
             var dia_str = dias[date.getDay()];
