@@ -7,12 +7,16 @@ $(document).ready(function() {
     var pad = function(str, max) {
         str = str.toString();
         return str.length < max ? pad("0" + str, max) : str;
-    }
+    };
+
+    var getCelsius = function (temp) {
+        return Math.round((5.0/9.0)*(temp-32.0));
+    };
 
     $.simpleWeather({
         location: 'Ciudad Madero, Tamaulipas, MX',
         woeid: '',
-        unit: 'f',
+        unit: 'c',
         success: function(weather) {
             // date.getDay() devuelve de 0 a 6; 0 es Domingo.
             var dia_str = dias[date.getDay()];
@@ -66,6 +70,12 @@ $(document).ready(function() {
             * CLIMA DE HOY
             */
             // $("#today-condition").addClass("icon-"+weather.code);
+            var isFarenheitBug = weather.units.temp === "F";
+            if (isFarenheitBug) {
+                weather.temp = getCelsius(parseInt(weather.temp));
+                weather.units.temp = "C";
+            }
+
             $("#today-condition").attr("src", weather.image);
             $("#today-temperature").html(weather.temp+"&deg;"+weather.units.temp);
 
@@ -78,6 +88,10 @@ $(document).ready(function() {
 
             var temp_promedio = Math.round((parseInt(weather.forecast[1].high) +
                 parseInt(weather.forecast[1].low)) / 2);
+
+            if (isFarenheitBug) {
+                temp_promedio = getCelsius(temp_promedio);
+            }
 
             $("#tomorrow .day-name").html(dias[dia_despues]);
             // $("#tomorrow-condition").addClass("icon-"+weather.forecast[1].code);
@@ -94,6 +108,10 @@ $(document).ready(function() {
             temp_promedio = Math.round((parseInt(weather.forecast[2].high) +
                 parseInt(weather.forecast[2].low)) / 2);
 
+            if (isFarenheitBug) {
+                temp_promedio = getCelsius(temp_promedio);
+            }
+
             $("#after-tomorrow .day-name").html(dias[dia_despues]);
             // $("#after-tomorrow-condition").addClass("icon-"+weather.forecast[2].code);
             $("#after-tomorrow-condition").attr("src", weather.forecast[2].image);
@@ -108,6 +126,10 @@ $(document).ready(function() {
 
             temp_promedio = Math.round((parseInt(weather.forecast[3].high) +
                 parseInt(weather.forecast[3].low)) / 2);
+
+            if (isFarenheitBug) {
+                temp_promedio = getCelsius(temp_promedio);
+            }
 
             $("#last-day .day-name").html(dias[dia_despues]);
             // $("#last-day-condition").addClass("icon-"+weather.forecast[3].code);
